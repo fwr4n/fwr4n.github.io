@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Furkan | Portfolyo</title>
     <!-- Modern Fontlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons (Profesyonel İkon Seti) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
-            /* Aesthetic Dark / Anime Vibe Renk Paleti */
             --bg-deep: #050509;
             --bg-card: rgba(15, 15, 24, 0.55);
             --text-main: #e2e8f0;
@@ -45,7 +44,6 @@
             overflow-x: hidden;
         }
 
-        /* Atmosferik Arka Plan Işıkları (Anime Gece Konsepti) */
         .ambient-light {
             position: fixed;
             border-radius: 50%;
@@ -55,25 +53,14 @@
             animation: pulse-light 10s infinite alternate;
         }
 
-        .light-1 {
-            width: 400px; height: 400px;
-            background: var(--accent-blue);
-            top: -10%; left: -10%;
-        }
-
-        .light-2 {
-            width: 500px; height: 500px;
-            background: var(--accent-purple);
-            bottom: -20%; right: -10%;
-            animation-delay: -5s;
-        }
+        .light-1 { width: 400px; height: 400px; background: var(--accent-blue); top: -10%; left: -10%; }
+        .light-2 { width: 500px; height: 500px; background: var(--accent-purple); bottom: -20%; right: -10%; animation-delay: -5s; }
 
         @keyframes pulse-light {
             0% { transform: scale(1); opacity: 0.3; }
             100% { transform: scale(1.2); opacity: 0.5; }
         }
 
-        /* Ana Konteyner (Glassmorphism) */
         .carrd-container {
             width: 100%;
             max-width: 520px;
@@ -93,7 +80,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Dil Butonu */
         .lang-btn {
             position: absolute;
             top: 20px;
@@ -112,211 +98,77 @@
             gap: 6px;
         }
 
-        .lang-btn:hover {
-            color: var(--accent-blue);
-            border-color: var(--accent-blue);
-            background: rgba(139, 164, 249, 0.1);
-        }
+        .lang-btn:hover { color: var(--accent-blue); border-color: var(--accent-blue); background: rgba(139, 164, 249, 0.1); }
 
-        /* Başlık / Profil Alanı */
-        .header-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        .header-section { text-align: center; margin-bottom: 30px; }
 
-        /* Estetik Avatar Halkası */
-        .avatar-wrapper {
-            position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 20px;
-        }
-
+        .avatar-wrapper { position: relative; width: 130px; height: 130px; margin: 0 auto 20px; }
         .avatar-ring {
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-blue), transparent, var(--accent-purple));
-            z-index: 0;
-            animation: spin-ring 4s linear infinite;
+            position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border-radius: 50%; background: linear-gradient(45deg, var(--accent-blue), transparent, var(--accent-purple));
+            z-index: 0; animation: spin-ring 4s linear infinite;
         }
 
         @keyframes spin-ring { 100% { transform: rotate(360deg); } }
 
-        .avatar {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #0f0f18;
-            z-index: 1;
-        }
+        .avatar { position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid #0f0f18; z-index: 1; cursor: pointer; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) brightness(0.9); }
 
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.1) brightness(0.9);
-        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: 1px; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 500; color: var(--accent-blue); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        
+        .quote { font-size: 1rem; font-style: italic; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; user-select: none; }
+        .location { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 30px 0; }
 
-        h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .quote {
-            font-size: 1rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .location {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 30px 0;
-        }
-
-        /* Hakkımda */
-        .section-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; color: #fff; display: flex; align-items: center; gap: 8px; }
         .section-title i { color: var(--accent-purple); font-size: 1.4rem; }
 
-        .about-text {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            text-align: justify;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
+        .about-text { font-size: 0.95rem; color: var(--text-muted); text-align: justify; line-height: 1.8; background: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
 
-        /* Yetenekler */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-        }
-
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .skill-tag { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); color: var(--text-main); padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease; }
         .skill-tag i { color: var(--accent-blue); font-size: 1.1rem; }
         .skill-tag:hover { background: rgba(139, 164, 249, 0.1); border-color: var(--accent-blue); transform: translateY(-2px); }
 
-        /* Spotify Widget */
-        .spotify-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
+        .spotify-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .spotify-container iframe { border-radius: 16px !important; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.3); }
 
-        .spotify-container iframe {
-            border-radius: 16px !important;
-            border: 1px solid var(--border);
-            background: rgba(0, 0, 0, 0.3);
-            transition: border-color 0.3s ease;
-        }
+        .links-container { display: flex; flex-direction: column; gap: 12px; }
+        .link-btn { display: flex; align-items: center; width: 100%; padding: 16px 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 16px; color: var(--text-main); text-decoration: none; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 1rem; transition: all 0.3s ease; }
+        .link-btn i { font-size: 1.4rem; margin-right: 12px; color: var(--accent-blue); }
+        .link-btn:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--accent-blue); transform: translateY(-2px); }
+
+        /* Easter Egg: Karanlık Metin Ekranı */
+        #secret-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 2s ease-in-out; padding: 20px; }
+        #secret-screen.active { opacity: 1; pointer-events: all; }
+        #secret-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.85rem; color: #6b7280; text-align: center; max-width: 80%; opacity: 0; transition: opacity 1.5s ease-in-out; line-height: 2; letter-spacing: 1px; }
+        #secret-text.visible { opacity: 1; }
+
+        /* Easter Egg: Resim Ekranı */
+        #image-secret-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 1.5s ease-in-out; }
+        #image-secret-screen.active { opacity: 1; pointer-events: all; cursor: pointer; }
+        .image-secret-container { display: flex; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.95); transition: all 1s ease-in-out; transition-delay: 0.5s; }
+        #image-secret-screen.active .image-secret-container { opacity: 1; transform: scale(1); }
+        #secret-image { max-width: 90vw; max-height: 70vh; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; box-shadow: 0 0 40px rgba(0,0,0,1); object-fit: cover; }
+        #secret-image-text { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 1rem; color: #4b5563; margin-top: 20px; }
+
+        /* ARG Soyut Easter Egg Ekranı */
+        #arg-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #010103; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.5s; font-family: 'Fira Code', monospace; color: #7aa2f7; overflow: hidden; }
+        #arg-screen.active { opacity: 1; pointer-events: all; }
+        .scanlines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 50%); background-size: 100% 4px; pointer-events: none; z-index: 2; }
+        #arg-content { max-width: 85%; width: 500px; text-align: left; font-size: 0.9rem; line-height: 1.8; z-index: 3; filter: drop-shadow(0 0 5px rgba(122, 162, 247, 0.5)); }
+        .arg-line { margin-bottom: 10px; opacity: 0; transform: translateX(-10px); transition: all 0.5s ease-out; color: #a9b1d6; }
+        .arg-line.show { opacity: 1; transform: translateX(0); }
+        .arg-symbol { color: #f7768e; font-weight: bold; margin-right: 8px; }
+        .arg-glitch { font-size: 2.5rem; font-weight: bold; text-align: center; margin-top: 40px; color: #fff; text-shadow: 2px 0 #f7768e, -2px 0 #7aa2f7; animation: glitch-anim 0.2s infinite; }
         
-        .spotify-container iframe:hover { border-color: var(--accent-purple); }
-
-        /* Butonlar (İletişim) */
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        @keyframes glitch-anim {
+            0% { clip-path: inset(10% 0 30% 0); transform: translate(-2px, 2px); }
+            50% { clip-path: inset(50% 0 10% 0); transform: translate(2px, -2px); }
+            100% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, -2px); }
         }
 
-        .link-btn {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-btn i {
-            font-size: 1.4rem;
-            margin-right: 12px;
-            color: var(--accent-blue);
-            transition: color 0.3s ease;
-        }
-
-        .link-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .link-btn:hover i { color: var(--accent-purple); }
-
-        /* Mobil Uyum */
         @media (max-width: 500px) {
             .carrd-container { padding: 35px 20px; border-radius: 20px; }
             h1 { font-size: 2rem; }
@@ -325,7 +177,6 @@
 </head>
 <body>
 
-    <!-- Arka Plan Işıkları -->
     <div class="ambient-light light-1"></div>
     <div class="ambient-light light-2"></div>
 
@@ -389,11 +240,16 @@
         </div>
     </div>
 
+    <!-- Easter Egg Ekranları -->
+    <div id="secret-screen"><p id="secret-text"></p></div>
+    <div id="image-secret-screen"><div class="image-secret-container"><img id="secret-image" src=""><p id="secret-image-text">Hayatımın en güzel anlarından bir kare.</p></div></div>
+    <div id="arg-screen"><div class="scanlines"></div><div id="arg-content"></div></div>
+
     <script>
         const translations = {
             tr: {
                 title: "Kendi halinde profesör",
-                bio: "\"Kendi oluşturduğum hayatı yaşıyor(dum).\"",
+                bio: "\"Kendi zihnimin mahkumuyum.\"",
                 location: "Osmaniye, Türkiye",
                 aboutTitle: "Hakkımda",
                 about: "Ben Furkan, 17 yaşındayım ve birkaç ay sonra reşit olacağım. Büro yönetimi bölümünde okuyorum ve kaliteli bir üniversite hedefliyorum. Eskiden Minecraft, Valorant, Roblox gibi oyunlar oynasam da şu sıralar pek oynamıyor ve Discord'da aktif vakit geçirmiyorum. Hayatımı asıl kaliteli hale getirenin sanaldan uzaklaşıp sosyalleşmek olduğunu anladım, ancak yalnızlığı da seviyorum. İlkokul ve ortaokulda yaşadığım dışlanma ve travmatik olaylardan dolayı sağlıklı iletişim kurmakta ve insanlarla muhatap olmakta zorlanıyorum. Çevresi geniş biri değilim, üşengecim ve kendimi genel olarak sıkıcı biri olarak nitelendiririm. Zamanımın çoğunu müzik dinleyerek geçiriyorum; favori şarkılarım Tuğçe Şenoğlu'ndan \"Bunu sana demiştim\" ve Göksel İpekçi'den \"MECBURUM\".",
@@ -403,7 +259,7 @@
             },
             en: {
                 title: "A professor in his own world",
-                bio: "\"I was living the life I created.\"",
+                bio: "\"I am a prisoner of my own mind.\"",
                 location: "Osmaniye, Turkey",
                 aboutTitle: "About Me",
                 about: "I am Furkan, 17 years old. I study office management and aim for a great university. I used to play Minecraft and Valorant, but now I prefer socializing and real life. I enjoy solitude but struggle with communication due to past experiences. I consider myself a bit of a loner and a boring person, spending most of my time with music.",
@@ -416,7 +272,6 @@
         let currentLang = 'tr';
         function toggleLanguage() {
             currentLang = currentLang === 'tr' ? 'en' : 'tr';
-            // İkonların (html taglarının) silinmemesi için sadece span içlerini güncelliyoruz
             document.getElementById('title-text-span').innerText = translations[currentLang].title;
             document.getElementById('bio-text-span').innerText = translations[currentLang].bio;
             document.getElementById('location-text-span').innerText = translations[currentLang].location;
@@ -426,6 +281,100 @@
             document.getElementById('contact-title-span').innerText = translations[currentLang].contact;
             document.getElementById('btn-spotify').innerText = translations[currentLang].btnSpotify;
         }
+
+        // --- EASTER EGG: AVATAR (3 Clicks) ---
+        const secretLines = [
+            "Söylemek istediklerimle söyleyebildiklerim arasında görünmez bir duvar var.",
+            "Her cümle o duvara çarpıp geri dönüyor.",
+            "Yankısı bana ait değilmiş gibi geliyor.",
+            "Ben de susmayı seçiyorum.",
+            "Sustukça o duvar daha da kalınlaşıyor.",
+            "Kalınlaştıkça içimdeki sesler bile birbirini duyamaz hale geliyor.",
+            "Sanki zihnim bile kendi içinde uzaklaşıyor, ben ise bunu “alışmak” sanıyorum."
+        ];
+        let avatarClicks = 0;
+        let avatarTimer;
+        document.querySelector('.avatar').addEventListener('click', () => {
+            avatarClicks++;
+            clearTimeout(avatarTimer);
+            if (avatarClicks === 3) { startSecretText(); avatarClicks = 0; }
+            else { avatarTimer = setTimeout(() => avatarClicks = 0, 1000); }
+        });
+
+        function startSecretText() {
+            const screen = document.getElementById('secret-screen');
+            const textEl = document.getElementById('secret-text');
+            screen.classList.add('active');
+            let idx = 0;
+            setTimeout(showNext, 2000);
+            function showNext() {
+                if (idx >= secretLines.length) { setTimeout(() => screen.classList.remove('active'), 1000); return; }
+                textEl.innerText = secretLines[idx];
+                textEl.classList.add('visible');
+                setTimeout(() => {
+                    textEl.classList.remove('visible');
+                    setTimeout(() => { idx++; showNext(); }, 1500);
+                }, 4500);
+            }
+        }
+
+        // --- EASTER EGG: LANG BTN (5 Clicks) ---
+        const secretImages = [
+            "https://i.hizliresim.com/f8kiqo9.png", "https://i.hizliresim.com/eae0f6n.jpg", 
+            "https://i.hizliresim.com/djorror.jpg", "https://i.hizliresim.com/8wgsqmr.jpg"
+        ];
+        let currentImgIdx = 0;
+        let langClicks = 0;
+        let langTimer;
+        document.querySelector('.lang-btn').addEventListener('click', () => {
+            langClicks++;
+            clearTimeout(langTimer);
+            if (langClicks === 5) { startImageSecret(); langClicks = 0; }
+            else { langTimer = setTimeout(() => langClicks = 0, 1000); }
+        });
+
+        function startImageSecret() {
+            const screen = document.getElementById('image-secret-screen');
+            const img = document.getElementById('secret-image');
+            img.src = secretImages[currentImgIdx];
+            currentImgIdx = (currentImgIdx + 1) % secretImages.length;
+            screen.classList.add('active');
+            screen.onclick = () => { screen.classList.remove('active'); setTimeout(() => img.src = "", 1500); };
+        }
+
+        // --- EASTER EGG: QUOTE (DBL Click - Cryptic ARG) ---
+        const argLines = [
+            "[!] CRITICAL_ERROR: IDENTITY_FRAGMENT_MISSING",
+            "[?] Σthεr-X: Yøu αrε thε Drεαmεr.",
+            "[?] Δ_Frαgmεnt: Thε Wαll ιs α Mιrrør.",
+            "[?] Ψ_Sιgnαl: Sεlf-Prøcεss Løst ιn Vøid.",
+            "[!] [0x00]: Drεαm_Mødε_Acτivε.",
+            "[!] Σthεrεαl_Cødε: Reality_Nøt_Føund."
+        ];
+        document.querySelector('.quote').addEventListener('dblclick', () => {
+            const screen = document.getElementById('arg-screen');
+            const content = document.getElementById('arg-content');
+            screen.classList.add('active');
+            content.innerHTML = '';
+            let delay = 1000;
+            argLines.forEach(line => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'arg-line';
+                    p.innerHTML = `<span class="arg-symbol">></span> ${line}`;
+                    content.appendChild(p);
+                    setTimeout(() => p.classList.add('show'), 50);
+                }, delay);
+                delay += 1200;
+            });
+            setTimeout(() => {
+                const glitch = document.createElement('div');
+                glitch.className = 'arg-glitch';
+                glitch.innerText = "U Y A N";
+                content.appendChild(glitch);
+                setTimeout(() => screen.classList.remove('active'), 3500);
+            }, delay + 1000);
+        });
     </script>
 </body>
 </html>
