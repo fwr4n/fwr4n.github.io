@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Furkan | Portfolyo</title>
-    <!-- Modern ve teknolojik fontlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Modern Fontlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons (Profesyonel İkon Seti) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
-            /* Tokyo Night Renk Paleti */
-            --bg-main: #1a1b26;
-            --bg-card: #24283b;
-            --text-main: #a9b1d6;
-            --text-muted: #787c99;
-            --primary: #7aa2f7;
-            --secondary: #bb9af7;
-            --accent: #f7768e;
-            --border: #414868;
-            --border-hover: #7aa2f7;
+            /* Aesthetic Dark / Anime Vibe Renk Paleti */
+            --bg-deep: #050509;
+            --bg-card: rgba(15, 15, 24, 0.55);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-blue: #8ba4f9;
+            --accent-purple: #c3a6f9;
+            --border: rgba(139, 164, 249, 0.15);
+            --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
         }
 
         * {
@@ -26,307 +27,366 @@
             padding: 0;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-main); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: rgba(139, 164, 249, 0.3); border-radius: 10px; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            /* İnce ızgara (grid) deseni */
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-color: var(--bg-deep);
             color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 50px 20px;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
             overflow-x: hidden;
         }
 
-        .container {
+        /* Atmosferik Arka Plan Işıkları (Anime Gece Konsepti) */
+        .ambient-light {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: pulse-light 10s infinite alternate;
+        }
+
+        .light-1 {
+            width: 400px; height: 400px;
+            background: var(--accent-blue);
+            top: -10%; left: -10%;
+        }
+
+        .light-2 {
+            width: 500px; height: 500px;
+            background: var(--accent-purple);
+            bottom: -20%; right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes pulse-light {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* Ana Konteyner (Glassmorphism) */
+        .carrd-container {
             width: 100%;
-            max-width: 760px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+            max-width: 520px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 45px 35px;
+            box-shadow: var(--card-shadow), inset 0 0 20px rgba(255,255,255,0.02);
             position: relative;
+            animation: float-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes float-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Dil Butonu */
         .lang-btn {
             position: absolute;
-            top: 0;
-            right: 0;
-            background: transparent;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 6px 14px;
+            border-radius: 12px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
             cursor: pointer;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .lang-btn:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            background: rgba(122, 162, 247, 0.1);
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            background: rgba(139, 164, 249, 0.1);
         }
 
-        /* Ortak Kart Tasarımı */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Profil Başlık Alanı */
-        .header-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* Başlık / Profil Alanı */
+        .header-section {
             text-align: center;
-            padding-top: 45px;
+            margin-bottom: 30px;
         }
 
-        .avatar {
+        /* Estetik Avatar Halkası */
+        .avatar-wrapper {
+            position: relative;
             width: 130px;
             height: 130px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
-            padding: 4px;
-            margin-bottom: 20px;
-            background: var(--bg-main);
-            box-shadow: 0 0 20px rgba(122, 162, 247, 0.2);
+            background: linear-gradient(45deg, var(--accent-blue), transparent, var(--accent-purple));
+            z-index: 0;
+            animation: spin-ring 4s linear infinite;
+        }
+
+        @keyframes spin-ring { 100% { transform: rotate(360deg); } }
+
+        .avatar {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #0f0f18;
+            z-index: 1;
         }
 
         .avatar img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
+            filter: contrast(1.1) brightness(0.9);
         }
 
         h1 {
-            font-family: 'Fira Code', monospace;
-            font-size: 2.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
             color: #fff;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
-
-        /* Yanıp sönen terminal imleci */
-        h1::after {
-            content: '_';
-            color: var(--accent);
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
 
         h2 {
-            font-size: 1.1rem;
-            color: var(--secondary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 16px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .quote {
+            font-size: 1rem;
             font-style: italic;
             color: var(--text-muted);
-            background: var(--bg-main);
-            padding: 10px 20px;
-            border-radius: 8px;
-            border-left: 3px solid var(--accent);
-            display: inline-block;
-            margin-bottom: 16px;
-            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .location {
-            font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
-            color: var(--primary);
-        }
-
-        /* Bölüm Başlıkları */
-        .section-title {
-            font-family: 'Fira Code', monospace;
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 20px;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 4px;
         }
 
-        .section-title::before {
-            content: '~/';
-            color: var(--primary);
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 30px 0;
         }
 
         /* Hakkımda */
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title i { color: var(--accent-purple); font-size: 1.4rem; }
+
         .about-text {
-            font-size: 1.05rem;
-            color: var(--text-main);
+            font-size: 0.95rem;
+            color: var(--text-muted);
             text-align: justify;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03);
         }
 
         /* Yetenekler */
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .skill-tag {
-            font-family: 'Fira Code', monospace;
-            background: rgba(122, 162, 247, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(122, 162, 247, 0.3);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        /* İletişim */
-        .contact-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .contact-list li {
-            background: var(--bg-main);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
-            padding: 14px 20px;
-            border-radius: 8px;
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
+            gap: 6px;
+            transition: all 0.3s ease;
         }
 
-        .contact-list li:hover {
-            border-color: var(--secondary);
-            transform: translateX(4px);
-        }
+        .skill-tag i { color: var(--accent-blue); font-size: 1.1rem; }
+        .skill-tag:hover { background: rgba(139, 164, 249, 0.1); border-color: var(--accent-blue); transform: translateY(-2px); }
 
-        .contact-list span { color: var(--secondary); }
-
-        a { 
-            color: var(--text-main); 
-            text-decoration: none; 
-            transition: color 0.2s;
-        }
-        
-        a:hover { color: #fff; }
-
-        /* Spotify */
+        /* Spotify Widget */
         .spotify-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
         .spotify-container iframe {
-            border-radius: 12px !important;
-            background: var(--bg-main);
+            border-radius: 16px !important;
             border: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s ease;
+        }
+        
+        .spotify-container iframe:hover { border-color: var(--accent-purple); }
+
+        /* Butonlar (İletişim) */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* Mobil */
-        @media (max-width: 600px) {
-            body { padding: 30px 15px; }
-            .card { padding: 25px 20px; }
-            .contact-list { grid-template-columns: 1fr; }
+        .link-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-btn i {
+            font-size: 1.4rem;
+            margin-right: 12px;
+            color: var(--accent-blue);
+            transition: color 0.3s ease;
+        }
+
+        .link-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .link-btn:hover i { color: var(--accent-purple); }
+
+        /* Mobil Uyum */
+        @media (max-width: 500px) {
+            .carrd-container { padding: 35px 20px; border-radius: 20px; }
             h1 { font-size: 2rem; }
-            .lang-btn { position: relative; float: right; margin-bottom: 20px; }
-            .header-card { padding-top: 25px; clear: both; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- Profil Kartı -->
-        <header class="card header-card">
-            <button class="lang-btn" onclick="toggleLanguage()">TR / EN</button>
-            <div class="avatar">
-                <!-- Yeni profil fotoğrafınız -->
-                <img src="https://i.hizliresim.com/dr5gl9l.jpg" alt="Furkan">
+    <!-- Arka Plan Işıkları -->
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
+
+    <div class="carrd-container">
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <i class="ph ph-translate"></i> TR / EN
+        </button>
+
+        <div class="header-section">
+            <div class="avatar-wrapper">
+                <div class="avatar-ring"></div>
+                <div class="avatar">
+                    <img src="https://i.hizliresim.com/dr5gl9l.jpg" alt="Furkan">
+                </div>
             </div>
             <h1>Furkan</h1>
-            <h2 id="title-text">Kendi halinde profesör</h2>
-            <p class="quote" id="bio-text">"Kendi oluşturduğum hayatı yaşıyor(dum)."</p>
-            <p class="location" id="location-text">📍 Osmaniye, Türkiye</p>
-        </header>
+            <h2><i class="ph-fill ph-sparkle"></i> <span id="title-text-span">Kendi halinde profesör</span></h2>
+            <p class="quote"><i class="ph-fill ph-quotes"></i> <span id="bio-text-span">"Kendi oluşturduğum hayatı yaşıyor(dum)."</span></p>
+            <p class="location"><i class="ph-fill ph-map-pin"></i> <span id="location-text-span">Osmaniye, Türkiye</span></p>
+        </div>
 
-        <!-- Hakkımda Kartı -->
-        <section class="card">
-            <h3 class="section-title" id="about-title">Hakkımda</h3>
-            <div class="about-text" id="about-text">
+        <hr class="divider">
+
+        <div class="about-section">
+            <h3 class="section-title"><i class="ph-fill ph-user-circle"></i> <span id="about-title-span">Hakkımda</span></h3>
+            <p class="about-text" id="about-text-span">
                 Ben Furkan, 17 yaşındayım ve birkaç ay sonra reşit olacağım. Büro yönetimi bölümünde okuyorum ve kaliteli bir üniversite hedefliyorum. Eskiden Minecraft, Valorant, Roblox gibi oyunlar oynasam da şu sıralar pek oynamıyor ve Discord'da aktif vakit geçirmiyorum. Hayatımı asıl kaliteli hale getirenin sanaldan uzaklaşıp sosyalleşmek olduğunu anladım, ancak yalnızlığı da seviyorum. İlkokul ve ortaokulda yaşadığım dışlanma ve travmatik olaylardan dolayı sağlıklı iletişim kurmakta ve insanlarla muhatap olmakta zorlanıyorum. Çevresi geniş biri değilim, üşengecim ve kendimi genel olarak sıkıcı biri olarak nitelendiririm. Zamanımın çoğunu müzik dinleyerek geçiriyorum; favori şarkılarım Tuğçe Şenoğlu'ndan "Bunu sana demiştim" ve Göksel İpekçi'den "MECBURUM".
-            </div>
-        </section>
+            </p>
+        </div>
 
-        <!-- Yetenekler Kartı -->
-        <section class="card">
-            <h3 class="section-title" id="skills-title">Yetenekler</h3>
-            <div class="skills-grid">
-                <div class="skill-tag">Java</div>
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">Lua</div>
-            </div>
-        </section>
+        <div class="skills-grid">
+            <div class="skill-tag"><i class="ph-fill ph-coffee"></i> Java</div>
+            <div class="skill-tag"><i class="ph-fill ph-code"></i> Python</div>
+            <div class="skill-tag"><i class="ph-fill ph-terminal-window"></i> Lua</div>
+        </div>
 
-        <!-- Şarkılar Kartı -->
-        <section class="card">
-            <h3 class="section-title" id="music-title">Favori Şarkılarım</h3>
-            <div class="spotify-container">
-                <iframe src="https://open.spotify.com/embed/track/5sbPe13VMkiqDm4WqUlk9M?theme=0" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                <iframe src="https://open.spotify.com/embed/track/3sAwWq40uK8QB5q1zKBHi5?theme=0" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-        </section>
+        <hr class="divider">
 
-        <!-- İletişim Kartı -->
-        <section class="card">
-            <h3 class="section-title" id="contact-title">İletişim</h3>
-            <ul class="contact-list">
-                <li><span>[TikTok]</span> <a href="https://tiktok.com/@westires" target="_blank">@westires</a></li>
-                <li><span>[Instagram]</span> <a href="https://www.instagram.com/nywkan_" target="_blank">@nywkan_</a></li>
-                <li><span>[Spotify]</span> <a href="https://open.spotify.com/user/314jctz3ahpa5poavqordi66w5zu?si=266265dd61474327" target="_blank" id="spotify-text">Profilim</a></li>
-                <li><span>[Discord]</span> westires</li>
-            </ul>
-        </section>
+        <h3 class="section-title"><i class="ph-fill ph-headphones"></i> <span id="music-title-span">Favori Şarkılarım</span></h3>
+        <div class="spotify-container">
+            <iframe src="https://open.spotify.com/embed/track/5sbPe13VMkiqDm4WqUlk9M?theme=0" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/3sAwWq40uK8QB5q1zKBHi5?theme=0" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
 
+        <hr class="divider">
+
+        <h3 class="section-title"><i class="ph-fill ph-link"></i> <span id="contact-title-span">İletişim</span></h3>
+        <div class="links-container">
+            <a href="https://tiktok.com/@westires" target="_blank" class="link-btn">
+                <i class="ph-fill ph-tiktok-logo"></i> <span id="btn-tiktok">TikTok</span>
+            </a>
+            <a href="https://www.instagram.com/nywkan_" target="_blank" class="link-btn">
+                <i class="ph-fill ph-instagram-logo"></i> <span id="btn-ig">Instagram</span>
+            </a>
+            <a href="https://open.spotify.com/user/314jctz3ahpa5poavqordi66w5zu?si=266265dd61474327" target="_blank" class="link-btn">
+                <i class="ph-fill ph-spotify-logo"></i> <span id="btn-spotify">Spotify Profilim</span>
+            </a>
+            <a href="#" class="link-btn" style="cursor: default;">
+                <i class="ph-fill ph-discord-logo"></i> <span>Discord: westires</span>
+            </a>
+        </div>
     </div>
 
     <script>
@@ -334,39 +394,37 @@
             tr: {
                 title: "Kendi halinde profesör",
                 bio: "\"Kendi oluşturduğum hayatı yaşıyor(dum).\"",
-                location: "📍 Osmaniye, Türkiye",
+                location: "Osmaniye, Türkiye",
                 aboutTitle: "Hakkımda",
                 about: "Ben Furkan, 17 yaşındayım ve birkaç ay sonra reşit olacağım. Büro yönetimi bölümünde okuyorum ve kaliteli bir üniversite hedefliyorum. Eskiden Minecraft, Valorant, Roblox gibi oyunlar oynasam da şu sıralar pek oynamıyor ve Discord'da aktif vakit geçirmiyorum. Hayatımı asıl kaliteli hale getirenin sanaldan uzaklaşıp sosyalleşmek olduğunu anladım, ancak yalnızlığı da seviyorum. İlkokul ve ortaokulda yaşadığım dışlanma ve travmatik olaylardan dolayı sağlıklı iletişim kurmakta ve insanlarla muhatap olmakta zorlanıyorum. Çevresi geniş biri değilim, üşengecim ve kendimi genel olarak sıkıcı biri olarak nitelendiririm. Zamanımın çoğunu müzik dinleyerek geçiriyorum; favori şarkılarım Tuğçe Şenoğlu'ndan \"Bunu sana demiştim\" ve Göksel İpekçi'den \"MECBURUM\".",
-                skills: "Yetenekler",
                 music: "Favori Şarkılarım",
                 contact: "İletişim",
-                spotify: "Profilim"
+                btnSpotify: "Spotify Profilim"
             },
             en: {
                 title: "A professor in his own world",
                 bio: "\"I was living the life I created.\"",
-                location: "📍 Osmaniye, Turkey",
+                location: "Osmaniye, Turkey",
                 aboutTitle: "About Me",
                 about: "I am Furkan, 17 years old. I study office management and aim for a great university. I used to play Minecraft and Valorant, but now I prefer socializing and real life. I enjoy solitude but struggle with communication due to past experiences. I consider myself a bit of a loner and a boring person, spending most of my time with music.",
-                skills: "Skills",
                 music: "Favorite Tracks",
                 contact: "Contact",
-                spotify: "My Profile"
+                btnSpotify: "My Spotify Profile"
             }
         };
 
         let currentLang = 'tr';
         function toggleLanguage() {
             currentLang = currentLang === 'tr' ? 'en' : 'tr';
-            document.getElementById('title-text').innerText = translations[currentLang].title;
-            document.getElementById('bio-text').innerText = translations[currentLang].bio;
-            document.getElementById('location-text').innerText = translations[currentLang].location;
-            document.getElementById('about-title').innerText = translations[currentLang].aboutTitle;
-            document.getElementById('about-text').innerText = translations[currentLang].about;
-            document.getElementById('skills-title').innerText = translations[currentLang].skills;
-            document.getElementById('music-title').innerText = translations[currentLang].music;
-            document.getElementById('contact-title').innerText = translations[currentLang].contact;
-            document.getElementById('spotify-text').innerText = translations[currentLang].spotify;
+            // İkonların (html taglarının) silinmemesi için sadece span içlerini güncelliyoruz
+            document.getElementById('title-text-span').innerText = translations[currentLang].title;
+            document.getElementById('bio-text-span').innerText = translations[currentLang].bio;
+            document.getElementById('location-text-span').innerText = translations[currentLang].location;
+            document.getElementById('about-title-span').innerText = translations[currentLang].aboutTitle;
+            document.getElementById('about-text-span').innerText = translations[currentLang].about;
+            document.getElementById('music-title-span').innerText = translations[currentLang].music;
+            document.getElementById('contact-title-span').innerText = translations[currentLang].contact;
+            document.getElementById('btn-spotify').innerText = translations[currentLang].btnSpotify;
         }
     </script>
 </body>
