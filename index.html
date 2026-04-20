@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furkan | Portfolyo</title>
+    <!-- Anime estetiğine uygun, yumuşak ve modern bir font -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nunito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Özel Kaydırma Çubuğu */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.6); }
+
+        body {
+            font-family: 'Nunito', 'M PLUS Rounded 1c', sans-serif;
+            /* Anime gökyüzü (Alacakaranlık) renk geçişi */
+            background: linear-gradient(to bottom, #1a0b2e, #4b1d52, #9a4c68, #e88a76);
+            background-attachment: fixed;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arka Plan Işık Partikülleri (Aesthetic Vibe) */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
+            100% { transform: translateY(-50px) translateX(20px) scale(1.5); opacity: 0.8; box-shadow: 0 0 10px #fff; }
+        }
+
+        /* Ana Taşıyıcı */
+        .container {
+            width: 100%;
+            max-width: 700px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Cam Efekti (Glassmorphism) Paneller */
+        .glass-panel {
+            background: rgba(30, 20, 50, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Başlık / Profil Alanı */
+        .header-panel {
+            text-align: center;
+            position: relative;
+        }
+
+        /* Dil Değiştirme Butonu */
+        .lang-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Avatar Görseli (Kendi resminizi url içine ekleyebilirsiniz) */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #f69d7b, #9a4c68);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(246, 157, 123, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden; /* Resmin dışarı taşmasını engeller */
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Resmi orantılı şekilde sığdırır */
+        }
+
+        .header-panel h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-panel h2 {
+            font-size: 1.2rem;
+            color: #ffcccc;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .location {
+            font-size: 1rem;
+            color: #e88a76;
+            font-weight: 700;
+        }
+
+        /* Bölüm Başlıkları */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffcccc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background: #e88a76;
+            border-radius: 4px;
+            box-shadow: 0 0 10px #e88a76;
+        }
+
+        /* Hakkımda Metni */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: justify;
+        }
+
+        /* Yetenek Etiketleri */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .skill-tag:hover {
+            background: rgba(232, 138, 118, 0.3);
+            border-color: #e88a76;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(232, 138, 118, 0.4);
+        }
+
+        /* İletişim Listesi */
+        .contact-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .contact-list li {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px 18px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-list li:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-list li span {
+            color: #ffcccc;
+            font-weight: 700;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #e88a76;
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Spotify Bölümü */
+        .spotify-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .spotify-container iframe {
+            width: 100% !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            body { padding: 20px 10px; }
+            .header-panel h1 { font-size: 2.2rem; }
+            .lang-btn { top: 20px; right: 20px; }
+            .contact-list { grid-template-columns: 1fr; }
+            .glass-panel { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka plan partikülleri -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Profil Kartı -->
+        <header class="glass-panel header-panel">
+            <button class="lang-btn" onclick="toggleLanguage()">TR / EN</button>
+            <div class="avatar">
+                <img src="https://i.hizliresim.com/dr5gl9l.jpg" alt="Furkan Profil Fotoğrafı">
+            </div>
+            <h1>Furkan</h1>
+            <h2 id="title-text">Kendi halinde profesör</h2>
+            <p class="quote" id="bio-text">"Kendi oluşturduğum hayatı yaşıyor(dum)."</p>
+            <p class="location" id="location-text">📍 Osmaniye, Türkiye</p>
+        </header>
+
+        <!-- Hakkımda Kartı -->
+        <section class="glass-panel">
+            <h3 class="section-title" id="about-title">Hakkımda</h3>
+            <div class="about-text" id="about-text">
+                Ben Furkan, 17 yaşındayım ve birkaç ay sonra reşit olacağım. Büro yönetimi bölümünde okuyorum ve kaliteli bir üniversite hedefliyorum. Eskiden Minecraft, Valorant, Roblox gibi oyunlar oynasam da şu sıralar pek oynamıyor ve Discord'da aktif vakit geçirmiyorum. Hayatımı asıl kaliteli hale getirenin sanaldan uzaklaşıp sosyalleşmek olduğunu anladım, ancak yalnızlığı da seviyorum. İlkokul ve ortaokulda yaşadığım dışlanma ve travmatik olaylardan dolayı sağlıklı iletişim kurmakta ve insanlarla muhatap olmakta zorlanıyorum. Çevresi geniş biri değilim, üşengecim ve kendimi genel olarak sıkıcı biri olarak nitelendiririm. Zamanımın çoğunu müzik dinleyerek geçiriyorum; favori şarkılarım Tuğçe Şenoğlu'ndan "Bunu sana demiştim" ve Göksel İpekçi'den "MECBURUM".
+            </div>
+        </section>
+
+        <!-- Yetenekler Kartı -->
+        <section class="glass-panel">
+            <h3 class="section-title" id="skills-title">Yetenekler</h3>
+            <div class="skills-grid">
+                <div class="skill-tag">Java</div>
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">Lua</div>
+            </div>
+        </section>
+
+        <!-- Şarkılar Kartı -->
+        <section class="glass-panel">
+            <h3 class="section-title" id="music-title">Favori Şarkılarım</h3>
+            <div class="spotify-container">
+                <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/5sbPe13VMkiqDm4WqUlk9M?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/3sAwWq40uK8QB5q1zKBHi5?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- İletişim Kartı -->
+        <section class="glass-panel">
+            <h3 class="section-title" id="contact-title">İletişim</h3>
+            <ul class="contact-list">
+                <li><span>📱 TikTok:</span> <a href="https://tiktok.com/@westires" target="_blank">@westires</a></li>
+                <li><span>📸 Instagram:</span> <a href="https://www.instagram.com/nywkan_" target="_blank">@nywkan_</a></li>
+                <li><span>🎵 Spotify:</span> <a href="https://open.spotify.com/user/314jctz3ahpa5poavqordi66w5zu?si=266265dd61474327" target="_blank" id="spotify-text">Profilim</a></li>
+                <li><span>💬 Discord:</span> westires</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Rastgele arka plan partikülleri (Işık hüzmeleri) oluşturma
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            let particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Rastgele boyut ve konum
+            let size = Math.random() * 4 + 2; // 2px - 6px
+            let posX = Math.random() * 100; // 0% - 100%
+            let posY = Math.random() * 100; // 0% - 100%
+            let delay = Math.random() * 5; // Rastgele animasyon gecikmesi
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Dil sözlüğü
+        const translations = {
+            tr: {
+                title: "Kendi halinde profesör",
+                bio: "\"Kendi oluşturduğum hayatı yaşıyor(dum).\"",
+                location: "📍 Osmaniye, Türkiye",
+                aboutTitle: "Hakkımda",
+                about: "Ben Furkan, 17 yaşındayım ve birkaç ay sonra reşit olacağım. Büro yönetimi bölümünde okuyorum ve kaliteli bir üniversite hedefliyorum. Eskiden Minecraft, Valorant, Roblox gibi oyunlar oynasam da şu sıralar pek oynamıyor ve Discord'da aktif vakit geçirmiyorum. Hayatımı asıl kaliteli hale getirenin sanaldan uzaklaşıp sosyalleşmek olduğunu anladım, ancak yalnızlığı da seviyorum. İlkokul ve ortaokulda yaşadığım dışlanma ve travmatik olaylardan dolayı sağlıklı iletişim kurmakta ve insanlarla muhatap olmakta zorlanıyorum. Çevresi geniş biri değilim, üşengecim ve kendimi genel olarak sıkıcı biri olarak nitelendiririm. Zamanımın çoğunu müzik dinleyerek geçiriyorum; favori şarkılarım Tuğçe Şenoğlu'ndan \"Bunu sana demiştim\" ve Göksel İpekçi'den \"MECBURUM\".",
+                skills: "Yetenekler",
+                music: "Favori Şarkılarım",
+                contact: "İletişim",
+                spotify: "Profilim"
+            },
+            en: {
+                title: "A professor in his own world",
+                bio: "\"I was living the life I created.\"",
+                location: "📍 Osmaniye, Turkey",
+                aboutTitle: "About Me",
+                about: "I am Furkan, 17 years old and will be an adult in a few months. I am studying office management and aiming for a good university. Although I used to play games like Minecraft, Valorant, and Roblox, I don't play much lately and I'm not active on Discord. I realized that stepping away from the virtual world and socializing is what truly improves life's quality, though I also enjoy being alone. Due to being excluded and some traumatic events in primary and middle school, I struggle with healthy communication and feel shy interacting with people. I don't have a wide social circle, I'm a bit lazy, and I generally consider myself a boring person. I spend most of my time listening to music; my favorite songs are \"Bunu sana demiştim\" by Tuğçe Şenoğlu and \"MECBURUM\" by Göksel İpekçi.",
+                skills: "Skills",
+                music: "Favorite Tracks",
+                contact: "Contact",
+                spotify: "My Profile"
+            }
+        };
+
+        let currentLang = 'tr';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            
+            document.getElementById('title-text').innerText = translations[currentLang].title;
+            document.getElementById('bio-text').innerText = translations[currentLang].bio;
+            document.getElementById('location-text').innerText = translations[currentLang].location;
+            document.getElementById('about-title').innerText = translations[currentLang].aboutTitle;
+            document.getElementById('about-text').innerText = translations[currentLang].about;
+            document.getElementById('skills-title').innerText = translations[currentLang].skills;
+            document.getElementById('music-title').innerText = translations[currentLang].music;
+            document.getElementById('contact-title').innerText = translations[currentLang].contact;
+            document.getElementById('spotify-text').innerText = translations[currentLang].spotify;
+        }
+    </script>
+</body>
+</html>
